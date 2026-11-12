@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.h2database:h2:2.5.252'
+}
+
+// Three commands for running the services separately.
+tasks.register('initDb', JavaExec) {
+    group = 'application'
+    description = 'Create the database tables'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.megasoft.DatabaseInitService'
+}
+
+tasks.register('populateDb', JavaExec) {
+    group = 'application'
+    description = 'Fill the database with sample data'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.megasoft.DatabasePopulateService'
+}
+
+tasks.register('queryDb', JavaExec) {
+    group = 'application'
+    description = 'Run the five SELECT queries'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.megasoft.Main'
+}
