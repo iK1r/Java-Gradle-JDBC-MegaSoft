@@ -17,7 +17,7 @@ public class DatabaseInitService {
             RunScript.execute(Database.getInstance().getConnection(), reader);
             System.out.println("Database tables created successfully.");
         } catch (IOException | SQLException e) {
-            throw new IllegalStateException("Failed to initialize database", e);
+            throw new DatabaseException("Failed to initialize database", e);
         }
     }
 }

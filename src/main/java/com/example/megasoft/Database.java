@@ -16,7 +16,7 @@ public class Database {
             Files.createDirectories(Path.of("data"));
             connection = DriverManager.getConnection("jdbc:h2:./data/megasoft", "sa", "");
         } catch (SQLException | IOException e) {
-            throw new IllegalStateException("Cannot connect to database", e);
+            throw new DatabaseException("Cannot connect to database", e);
         }
     }
 

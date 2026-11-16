@@ -28,7 +28,7 @@ public class DatabaseQueryService {
                 result.add(new MaxSalaryWorker(rs.getString("NAME"), rs.getInt("SALARY")));
             }
         } catch (SQLException e) {
-            throw new IllegalStateException("Failed to find max salary workers", e);
+            throw new DatabaseException("Failed to find max salary workers", e);
         }
         return result;
     }
@@ -43,7 +43,7 @@ public class DatabaseQueryService {
                 result.add(new MaxProjectCountClient(rs.getString("NAME"), rs.getInt("PROJECT_COUNT")));
             }
         } catch (SQLException e) {
-            throw new IllegalStateException("Failed to find clients with most projects", e);
+            throw new DatabaseException("Failed to find clients with most projects", e);
         }
         return result;
     }
@@ -58,7 +58,7 @@ public class DatabaseQueryService {
                 result.add(new LongestProject(rs.getString("NAME"), rs.getInt("MONTH_COUNT")));
             }
         } catch (SQLException e) {
-            throw new IllegalStateException("Failed to find longest projects", e);
+            throw new DatabaseException("Failed to find longest projects", e);
         }
         return result;
     }
@@ -77,7 +77,7 @@ public class DatabaseQueryService {
                 ));
             }
         } catch (SQLException e) {
-            throw new IllegalStateException("Failed to find youngest and eldest workers", e);
+            throw new DatabaseException("Failed to find youngest and eldest workers", e);
         }
         return result;
     }
@@ -92,7 +92,7 @@ public class DatabaseQueryService {
                 result.add(new ProjectPrice(rs.getString("NAME"), rs.getLong("PRICE")));
             }
         } catch (SQLException e) {
-            throw new IllegalStateException("Failed to calculate project prices", e);
+            throw new DatabaseException("Failed to calculate project prices", e);
         }
         return result;
     }
@@ -101,7 +101,7 @@ public class DatabaseQueryService {
         try {
             return Files.readString(Path.of("sql", fileName), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new IllegalStateException("Cannot read SQL file: " + fileName, e);
+            throw new DatabaseException("Cannot read SQL file: " + fileName, e);
         }
     }
 }

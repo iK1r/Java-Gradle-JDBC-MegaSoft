@@ -17,7 +17,7 @@ public class DatabasePopulateService {
             RunScript.execute(Database.getInstance().getConnection(), reader);
             System.out.println("Database populated successfully.");
         } catch (IOException | SQLException e) {
-            throw new IllegalStateException("Failed to populate database", e);
+            throw new DatabaseException("Failed to populate database", e);
         }
     }
 }
